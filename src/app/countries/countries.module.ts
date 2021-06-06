@@ -6,6 +6,8 @@ import { PerRegionComponent } from './pages/per-region/per-region.component';
 import { SeeCountryComponent } from './pages/see-country/see-country.component';
 import { CountriesRoutingModule } from './countries-routing.module';
 import { FormsModule } from '@angular/forms';
+import { TableCountriesComponent } from './components/table-countries/table-countries.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
 
 
 
@@ -14,7 +16,9 @@ import { FormsModule } from '@angular/forms';
     PerCapitalComponent,
     PerCountryComponent,
     PerRegionComponent,
-    SeeCountryComponent
+    SeeCountryComponent,
+    TableCountriesComponent,
+    SearchbarComponent
   ],
   exports:[
    

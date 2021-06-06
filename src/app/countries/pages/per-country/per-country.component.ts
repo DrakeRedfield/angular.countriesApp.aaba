@@ -12,6 +12,7 @@ export class PerCountryComponent implements OnInit {
   textSearch: string = '';
   hasError: boolean = false;
   countries: ICountry[] = [];
+  suggestionsCountries: ICountry[] = [];
 
   constructor(
     private requests: CountriesService,
@@ -20,7 +21,9 @@ export class PerCountryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  search(){
+  search( text:string ){
+    console.log(text);
+    this.textSearch = text;
     this.hasError = false;
     if( this.textSearch.trim() !== '' ){
       this.requests.searchCountry(this.textSearch).subscribe( resp =>{
@@ -30,6 +33,13 @@ export class PerCountryComponent implements OnInit {
         }
       });
     }
+    this.textSearch = '';
   }
 
+  suggestions( ev:string ){
+    this.textSearch = ev;
+    this.requests.searchCountry( ev ).subscribe( resp => {
+      this.suggestionsCountries = resp.splice(0,3);
+    });
+  }
 }

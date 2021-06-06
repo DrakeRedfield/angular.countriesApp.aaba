@@ -1,1 +1,26 @@
-<p>per-region works!</p>
+<div class="animate__animated animate__slow animate__fadeIn">
+    <h2>Por Región: <small>{{ textSearch | titlecase }}</small></h2>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <button *ngFor="let region of regions;"
+                    class="btn"
+                    [ngClass]="{
+                        'btn-primary':textSearch === region,
+                        'btn-outline-primary': textSearch !== region
+                    }"
+                    (click)="search( region )">
+            {{ region | titlecase }}
+            </button>
+        </div>
+    </div>
+    <hr>
+    <div class="alert alert-danger" *ngIf="hasError">
+        No se encontraron resultados con {{textSearch}}
+    </div>
+    <div class="row" *ngIf="!hasError">
+        <div class="col">
+            <app-table-countries [countries]="countries" ></app-table-countries>
+        </div>
+    </div>
+</div>

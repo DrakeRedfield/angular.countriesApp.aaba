@@ -1,1 +1,29 @@
-<p>per-capital works!</p>
+<div class="animate__animated animate__slow animate__fadeIn">
+    <h2>Por Capital</h2>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <app-searchbar placeholder="Buscar por capital..." (onSearch)="search( $event )" (onDebounce)="suggestions( $event )"></app-searchbar>
+        </div>
+    </div>
+    <ul class="list-group" *ngIf="textSearch.trim() !== ''">
+        <li class="list-group-item list-group-item-action" 
+            *ngFor="let suggestion of suggestionsCountries;"
+            [routerLink]="['/country',suggestion.alpha2Code]">
+            {{ suggestion.capital }}
+        </li>
+        <li class="list-group-item list-group-item-action"
+            (click)="search( textSearch )">
+            Buscar: {{textSearch}}
+        </li>
+    </ul>
+    <hr>
+    <div class="alert alert-danger" *ngIf="hasError">
+        No se encontraron resultados con {{textSearch}}
+    </div>
+    <div class="row" *ngIf="!hasError">
+        <div class="col">
+            <app-table-countries [countries]="countries" ></app-table-countries>
+        </div>
+    </div>
+</div>
